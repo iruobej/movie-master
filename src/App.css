@@ -1,0 +1,67 @@
+:root{
+    --text-color: #3f98e0;
+    --light-grey: rgb(47, 47, 47);
+    --bg-color: rgb(31, 31, 31);
+    --font: "Rubik", sans-serif;
+}
+
+body {
+    color: var(--text-color);
+    font-family: var(--font);
+    background-color: var(--bg-color);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grey);
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+}
+
+.navbar h1 {
+    font-size: 20px;
+    padding: 15px;
+
+}
+
+.navbar ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/*Centering the login card*/
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: var(--light-grey);
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.card h3 {
+    margin-top: 2px;
+}
+
+input {
+    display: flex;
+    justify-content: flex;
+    margin-bottom: 5px;
+    font-family: var(--font);
+    border-radius: 20px;
+    padding: 7px;
+}
