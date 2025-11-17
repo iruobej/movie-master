@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom"
 function Login() {
     return  (
         <div className="wrapper">
             <div className="card">
-                <i className="fa-solid fa-film"></i>
-                <p>Movie Master</p>
+                <i className="fa-solid fa-film fa-2x"></i>
+                <h2>Movie Master</h2>
                 <h3>Login</h3>
                 <form action="/">
                     <input 
@@ -14,6 +15,8 @@ function Login() {
                         type="text"
                         placeholder="Password" 
                     />
+                    <button type="submit" className="loginBtn">Login</button>
+                    <p style={{color: "#fff"}}>Dont have an account? <Link to="/signup">Sign Up</Link> </p>
                 </form>
             </div>
         </div>
