@@ -11,7 +11,7 @@ function Login() {
         e.preventDefault(); //stopping page refresh, which would clear inputs
 
         if (username == "ji" && password == "pass") {
-            setError("");
+            localStorage.setItem("loggedIn", "true");
             navigate('/home')
         } else {
             setError("Invalid username or password");
