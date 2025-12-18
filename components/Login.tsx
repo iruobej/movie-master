@@ -1,6 +1,14 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState, type SyntheticEvent} from "react"
 
+type User = {
+    firstname: string;
+    lastname: string;
+    email: string;
+    username: string;
+    password: string;
+}
+
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -9,14 +17,31 @@ function Login() {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault(); //stopping page refresh, which would clear inputs
+        setError("");
 
-        if (username == "ji" && password == "pass") {
+        // Getting users from localStorage
+        const stored = localStorage.getItem("users");
+
+        if(!stored) {
+            setError("No accounts found. Please sign up first.");
+            return;
+        }
+
+        //converting strings in localStorage to JS objects, inside an array
+        const users: User[] = JSON.parse(stored);
+
+        const foundUser = users.find(
+            (u) => u.username === username && u.password === password
+        );
+
+        //If found, log in
+        if (foundUser) {
             localStorage.setItem("loggedIn", "true");
-            navigate('/home')
+            navigate("/home");
         } else {
             setError("Invalid username or password");
         }
-    }
+    };
     return  (
         <div className="wrapper">
             <div className="card">
@@ -30,7 +55,7 @@ function Login() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <input 
-                        type="text"
+                        type="password"
                         placeholder="Password" 
                         onChange={(e) => setPassword(e.target.value)}
                     />
