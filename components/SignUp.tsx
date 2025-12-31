@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useState, type SyntheticEvent} from "react"  
+import { useState, useEffect, type SyntheticEvent} from "react"  
 function SignUp() {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -8,6 +8,14 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
     const [errors, setErrors] = useState<string[]>([])
+    const [seeText, setSeeText] = useState(false);
+    const [seeCText, setSeeCText] = useState(false);
+
+    useEffect(() => {
+        document.body.classList.remove("login", "home");
+        document.body.classList.add("login");
+    }, [])
+
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         const errorList: string[] = [];
@@ -53,6 +61,7 @@ function SignUp() {
         alert("Account created! You can now log in.");
     }
 
+
     return  (
         <div className="wrapper">
             <div className="card">
@@ -80,16 +89,22 @@ function SignUp() {
                         placeholder="Username" 
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    <input 
-                        type="password"
-                        placeholder="Password" 
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input 
-                        type="password"
-                        placeholder="Confirm Password" 
-                        onChange={(e) => setCpassword(e.target.value)}
-                    />
+                    <div className="password-block">
+                        <input 
+                            type={seeText? "text" : "password"}
+                            placeholder="Password" 
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button onClick={() => setSeeText(prev => !prev)}><i className={seeText ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i></button>
+                    </div>
+                    <div className="password-block">
+                        <input 
+                            type={seeCText? "text" : "password"}
+                            placeholder="Confirm Password" 
+                            onChange={(e) => setCpassword(e.target.value)}
+                        />
+                        <button type="button" onClick={() => setSeeCText(prev => !prev)}><i className={seeCText ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i></button>
+                    </div>
                     <button type="submit" className="loginBtn">Sign Up</button>
                     <p style={{color: "#fff"}}>Already have an account? <Link to="/">Login</Link> </p>
                     {errors && <ul style={{color: "red", textAlign: "left"}}>
