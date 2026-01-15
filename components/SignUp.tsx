@@ -7,6 +7,7 @@ function SignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
+    const [watchlist, setWatchList] = useState<number[]>([]); //to hold the ids of saved movies
     const [errors, setErrors] = useState<string[]>([])
     const [seeText, setSeeText] = useState(false);
     const [seeCText, setSeeCText] = useState(false);
@@ -42,7 +43,7 @@ function SignUp() {
         }
         setErrors(errorList); //tells React to re-render so we don't need to use useEffect
 
-        if (errors.length > 0) {
+        if (errorList.length > 0) {
             return;
         }
 
@@ -54,6 +55,7 @@ function SignUp() {
             email,
             username,
             password,
+            watchlist
         };
 
         storedUsers.push(newUser);
@@ -105,7 +107,7 @@ function SignUp() {
                         />
                         <button type="button" onClick={() => setSeeCText(prev => !prev)}><i className={seeCText ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i></button>
                     </div>
-                    <button type="submit" className="loginBtn">Sign Up</button>
+                    <button type="submit" className="button">Sign Up</button>
                     <p style={{color: "#fff"}}>Already have an account? <Link to="/">Login</Link> </p>
                     {errors && <ul style={{color: "red", textAlign: "left"}}>
                         {errors.map((err, index) => (

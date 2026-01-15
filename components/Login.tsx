@@ -64,7 +64,7 @@ function Login() {
                         />
                         <button type="button"  onClick={() => setSeeText(prev => !prev)}><i className={seeText ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i></button> {/*type=button stops form from auto submitting*/}
                     </div>
-                    <button type="submit" className="loginBtn">Login</button>
+                    <button type="submit" className="button">Login</button>
                     <p style={{color: "#fff"}}>Dont have an account? <Link to="/signup">Sign Up</Link> </p>
                     {error && <p style={{color:"red"}}>{error}</p>}
                 </form>
