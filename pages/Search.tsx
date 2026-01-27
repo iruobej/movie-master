@@ -1,4 +1,4 @@
-import Navbar from './Navbar.tsx';
+import Navbar from '../components/Navbar.tsx';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 

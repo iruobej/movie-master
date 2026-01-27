@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from './Navbar.tsx';
+import Navbar from '../components/Navbar.tsx';
 import type { User } from '../types/User.ts';
 
 // Describe the shape of ONE movie returned by TMDB

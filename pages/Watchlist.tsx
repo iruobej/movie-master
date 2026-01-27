@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { User } from '../types/User.ts';
-import Navbar from './Navbar.tsx';
+import Navbar from '../components/Navbar.tsx';
 import { Link } from 'react-router-dom';
 
 function Watchlist () {
