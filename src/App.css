@@ -241,3 +241,64 @@ a {
     transition: all 0.2s ease;
     transform: translateY(-4px);
 }
+
+.movie-card {
+    display: flex;
+    background-color: var(--light-grey);
+    border-radius: 7px;
+    overflow: hidden;
+    min-height: 72px;
+    align-items: stretch;
+    margin-bottom: 5px;
+}
+
+.movie-card img {
+    height: 100%;
+    width: 70px;        
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.movie-card-content {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.fa-angle-right {
+    font-size: x-large;
+}
+
+.scrollable {
+    
+    overflow-y: auto;       /* enables vertical scrolling */
+    overflow-x: hidden;
+    padding-right: 6px; 
+}
+
+.scrollable.home {
+    max-height: 60vh;       /* controls how tall the list can be */
+}
+
+.big-poster {
+    width: 100%;
+    margin: 0 !important;
+
+    /*fading effect*/
+    mask-image: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 15%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 15%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}

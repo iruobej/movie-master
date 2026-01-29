@@ -2,17 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from '../components/Navbar.tsx';
 import type { User } from '../types/User.ts';
+import type { Movie } from '../types/Movie.ts';
 
-// Describe the shape of ONE movie returned by TMDB
-// (TMDB returns many fields, but we only list what we use)
-type Movie = {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string | null;
-  release_date?: string;
-  vote_average?: number;
-};
 
 function Movie() {
   // Reads the `id` from the URL
@@ -128,7 +119,7 @@ function Movie() {
         <img
           src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
           alt={movie.title}
-          style={{ width: 200, borderRadius: 10 }}
+          className="big-poster"
         />
       )}
 

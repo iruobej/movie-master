@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar.tsx';
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import type { User } from '../types/User.ts';
+import MovieCard from '../components/MovieCard.tsx';
 
 
 function Home() {
@@ -113,15 +114,15 @@ function Home() {
             <Navbar open={open} onClose={() => setOpen(false)}/>
             {user && <h1>Welcome back, {user.firstname}</h1>}
             <h2>Trending movies</h2>
-            <ul>
+            <ul className="scrollable home">
                 {results.map((m) => 
-                    <li key={m.id}><Link to={`/movie/${m.id}`}>{m.title}</Link></li>
+                    <MovieCard {...m}/>
                 )}
             </ul>
-            <h2>Movies you would like</h2>
-            <ul>
+            <h2>Movies you might like</h2>
+            <ul className="scrollable">
                 {newArray.map((m) => 
-                    <li key={m.id}><Link to={`/movie/${m.id}`}>{m.title}</Link></li>
+                    <MovieCard {...m}/>
                 )}
             </ul>
         </>

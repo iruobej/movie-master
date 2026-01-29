@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { User } from '../types/User.ts';
 import Navbar from '../components/Navbar.tsx';
+import MovieCard from '../components/MovieCard.tsx';
+import type { MoviePreview } from '../types/MoviePreview.tsx';
 import { Link } from 'react-router-dom';
 
 function Watchlist () {
@@ -20,12 +22,6 @@ function Watchlist () {
 
         setUser(JSON.parse(storedUser));
     }, []);
-
-    type MoviePreview = {
-        id: number;
-        title: string;
-        poster_path: string;
-    };
     
     //Storing every movie loaded from api request
     const [movies, setMovies] = useState<MoviePreview[]>([]);
@@ -57,7 +53,7 @@ function Watchlist () {
     if (!user) return null;
 
     return (
-        <div style={{ padding: '12' }}>
+        <div style={{ padding: '10' }}>
             <button
                 type="button"
                 className="hamburger"
@@ -71,18 +67,13 @@ function Watchlist () {
             <h1>Your Watchlist</h1>
             <h3>View your saved movies here</h3>
 
-            <ul>
+            <ul className="scrollable">
                 {movies.length === 0 ? (
                     <li>No movies saved yet</li>
                 ) : (
                     movies.map((m) => (
                         <li key={m.id}>
-                            <img 
-                                src={`https://image.tmdb.org/t/p/w185${m.poster_path}`} 
-                                alt={m.title} 
-                                style={{ width: 50 }}
-                            />
-                            <Link to={`/movie/${m.id}`}>{m.title}</Link>
+                            <MovieCard {...m}/>
                         </li>
                     ))
                 )}

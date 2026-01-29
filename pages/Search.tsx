@@ -1,6 +1,8 @@
 import Navbar from '../components/Navbar.tsx';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import MovieCard from '../components/MovieCard.tsx';
+import type { Movie } from '../types/Movie.ts';
 
 function Search() {
 
@@ -47,11 +49,6 @@ function Search() {
 
     }, [query, token]); 
 
-    type Movie = {
-        id: number;
-        title: string;
-    };
-
     return (
         <div style={{ padding: 12 }}>
             {/* Hamburger button to open the sidebar */}
@@ -78,10 +75,10 @@ function Search() {
             </div>
 
             {/* List of search results */}
-            <ul className='list'>
+            <ul className='list scrollable'>
                 {results.map((m) => (
                     <li className='listItem' key={m.id}>
-                        <Link to={`/movie/${m.id}`} >{m.title}</Link> 
+                        <MovieCard {...m}/>
                     </li>
                 ))}
             </ul>
