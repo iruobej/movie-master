@@ -32,6 +32,8 @@ function MovieBot() {
     const geminiKey = import.meta.env.VITE_GEMINI_KEY;
 
     const sendMessage = (text: string) => {
+        console.log("sendMessage called with:", text);
+
         const cleaned = text.trim();
         if (!cleaned) return;
 
@@ -39,6 +41,7 @@ function MovieBot() {
         setMessages((prev) => [...prev, {role: "user", text: cleaned}])
         setMessage("");
 
+        console.log(import.meta.env.VITE_GEMINI_KEY);
         //Calling Gemini
         fetch(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
