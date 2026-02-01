@@ -26,3 +26,5 @@ dist-ssr
 #env files (and any extensions) have been added so that the env variables are kept hidden and not committed to GitHub
 .env
 .env.*
+# Local Netlify folder
+.netlify

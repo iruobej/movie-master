@@ -302,3 +302,20 @@ a {
         rgba(0, 0, 0, 0) 100%
     );
 }
+
+.message-ai h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.message-ai p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.message-ai.loading {
+  opacity: 0.6;
+  font-style: italic;
+}
