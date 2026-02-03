@@ -178,37 +178,42 @@ a {
 
 /*AI page*/
 .prompt-wrapper {
-    position: absolute; /*not fixed - so it doesnt fight the flex layout*/
-    bottom: 16px;
-    margin: auto; /*centers horizontally*/
-    left: 50%;
-    transform: translateX(-50%);
-}
-.prompt {
-    background-color: var(--light-grey);
-    color: white;
-    border-radius: 100px;
-    width: 60vw;
-    min-height: 44px;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;          /* match the input width */
+  max-width: 800px;     /* optional */
 }
 
-.prompt-wrapper button{
+.prompt {
+  width: 100%;
+  background-color: var(--light-grey);
+  color: white;
+  border-radius: 100px;
+  min-height: 44px;
+
+  padding: 35px 60px 20px 20px; /* ← KEY: extra right padding for button */
+  box-sizing: border-box;
+
+  display: block;       /* ← better for inputs than flex */
+}
+
+.prompt-wrapper button {
   position: absolute;
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+
   background-color: white;
   padding: 10px;
   border-radius: 100px;
   width: 35px;
+  height: 35px;         /* ensures it’s a circle */
   border: none;
   cursor: pointer;
 }
+
 
 .chat-page {
     height: 100vh;

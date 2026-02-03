@@ -1,6 +1,9 @@
 import Navbar from "../components/Navbar.tsx";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Message from "../components/Message.tsx";
+
+
+
 
 type ChatMessage = {
   id: number;
@@ -37,6 +40,10 @@ function MovieBot() {
     }
   });
 
+  //For auto scrolling
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+
   useEffect(() => {
     document.body.classList.remove("login", "home");
     document.body.classList.add("home");
@@ -62,6 +69,13 @@ Ask me for movie recommendations, actor info, etc.`,
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages]);
+
+
   const sendMessage = (text: string) => {
     const cleaned = text.trim();
     if (!cleaned) return;
@@ -84,13 +98,24 @@ Ask me for movie recommendations, actor info, etc.`,
       body: JSON.stringify({ prompt: cleaned }),
     })
       .then(async (res) => {
-        // If your function errors, this helps show the real message
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data?.error || "Request failed");
-        return data;
+        const contentType = res.headers.get("content-type") || "";
+        const payload = contentType.includes("application/json")
+          ? await res.json().catch(() => ({}))
+          : { raw: await res.text().catch(() => "") };
+
+        if (!res.ok) {
+          const msg =
+            (payload as any)?.error ||
+            (payload as any)?.message ||
+            (payload as any)?.raw ||
+            `Request failed (${res.status})`;
+          throw new Error(msg);
+        }
+
+        return payload;
       })
-      .then((data) => {
-        const aiText = data.text ?? "Sorry — I couldn't generate a reply";
+      .then((data: any) => {
+        const aiText = data.text ?? data.reply ?? "Sorry — I couldn't generate a reply";
         setMessages((prev) =>
           prev.map((m) => (m.id === loadingId ? { ...m, text: aiText } : m))
         );
@@ -100,11 +125,12 @@ Ask me for movie recommendations, actor info, etc.`,
         setMessages((prev) =>
           prev.map((m) =>
             m.id === loadingId
-              ? { ...m, text: "Sorry — something went wrong." }
+              ? { ...m, text: `Error: ${String(err.message || err)}` }
               : m
           )
         );
       });
+
   };
 
   return (
@@ -122,6 +148,7 @@ Ask me for movie recommendations, actor info, etc.`,
           {messages.map((m) => (
             <Message key={m.id} role={m.role} text={m.text} />
           ))}
+          <div ref={bottomRef} />
         </div>
 
         <div className="prompt-wrapper">
