@@ -135,15 +135,15 @@ Ask me for movie recommendations, actor info, etc.`,
 
   return (
     <>
-      <button type="button" className="hamburger" onClick={() => setOpen(true)}>
-        <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }} />
-      </button>
+      <div className="header">
+          <button type="button" className="hamburger" onClick={() => setOpen(true)}>
+          <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }} />
+        </button>
 
-      <Navbar open={open} onClose={() => setOpen(false)} />
-
-      <div className="chat-page">
+        <Navbar open={open} onClose={() => setOpen(false)} />
         <h1>MovieBot</h1>
-
+      </div>
+      <div className="chat-page">
         <div className="messages">
           {messages.map((m) => (
             <Message key={m.id} role={m.role} text={m.text} />

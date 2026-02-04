@@ -54,17 +54,20 @@ function Watchlist () {
 
     return (
         <div style={{ padding: '10' }}>
-            <button
-                type="button"
-                className="hamburger"
-                onClick={() => setOpen(true)}
-            >
-                <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }}></i>
-            </button>
+            <div className="header">
+                <button
+                    type="button"
+                    className="hamburger"
+                    onClick={() => setOpen(true)}
+                >
+                    <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }}></i>
+                </button>
 
-            {/* Sidebar nav */}
-            <Navbar open={open} onClose={() => setOpen(false)} />
-            <h1>Your Watchlist</h1>
+                {/* Sidebar nav */}
+                <Navbar open={open} onClose={() => setOpen(false)} />
+                <h1>Your Watchlist</h1>
+            </div>
+
             <h3>View your saved movies here</h3>
 
             <ul className="scrollable">

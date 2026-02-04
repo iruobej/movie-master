@@ -51,19 +51,20 @@ function Search() {
 
     return (
         <div style={{ padding: 12 }}>
-            {/* Hamburger button to open the sidebar */}
-            <button
-                type="button"
-                className="hamburger"
-                onClick={() => setOpen(true)}
-            >
-                <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }}></i>
-            </button>
+            <div className="header">
+                {/* Hamburger button to open the sidebar */}
+                <button
+                    type="button"
+                    className="hamburger"
+                    onClick={() => setOpen(true)}
+                >
+                    <i className="fa-solid fa-bars" style={{ color: "#3f98e0" }}></i>
+                </button>
 
-            {/* Sidebar nav */}
-            <Navbar open={open} onClose={() => setOpen(false)} />
-
-            <h1>Search</h1>
+                {/* Sidebar nav */}
+                <Navbar open={open} onClose={() => setOpen(false)} />
+                <h1>Search</h1>
+            </div>
 
             <div className='searchBar'>
                 <input 

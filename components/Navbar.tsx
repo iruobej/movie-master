@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 type Props = {
   open: boolean;
@@ -6,6 +6,21 @@ type Props = {
 };
 
 function Navbar({ open, onClose }: Props) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // remove user data
+    localStorage.removeItem("currentUser");
+
+
+    // close sidebar
+    onClose();
+
+    // redirect to login page
+    navigate("/");
+  };
+
+
   return (
     <nav className={`sidebar ${open ? "sidebar-open" : ""}`}>
       <div className="sidebar-header">
@@ -22,7 +37,7 @@ function Navbar({ open, onClose }: Props) {
         <li><Link to="/moviebot">Moviebot</Link></li>
       </ul>
 
-      <button className="logOut">Log Out</button>
+      <button className="logOut" onClick={handleLogout}>Log Out</button>
     </nav>
   );
 }
