@@ -34,5 +34,8 @@ Users can search movies via the TMDB API, manage a personal watchlist, and chat 
 **Deployment**
 - Netlify
 
----
-S
+## What I learned
+- Securing API keys using serverless functions
+- Handling asynchronous AI responses safely
+- Debugging API version and model issues
+- Managing persistent user chat state
